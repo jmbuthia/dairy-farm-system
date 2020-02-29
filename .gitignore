@@ -1,0 +1,9 @@
+/target/
+.classpath
+.project
+.settings
+/build/
+.tern-project
+/WebContent/WEB-INF/lib/
+/*.mp4
+/*.class

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	
+
+<link rel="stylesheet" type="text/css" href="#{resource['css/sdcms.css']}"></link>
+
+	</h:head>
+	<h:body id="bodii" >
+	<div class="container">
+	<div class="container-fluid">
+          <header>
+          <ui:include src="/pageincludes/adminHeader.xhtml" />
+     
+    </header>  
+    <div align="center">
+    <h1 style="color:teal">Administrator Dash Board</h1>
+    </div>
+    
+    <footer class="footer" style="margin: 0em 0em 0em -2em;">
+    <div class="container" style="padding-left: 0; padding-right: 0;">
+ 
+    
+    
+<div class="row">
+<div class="col-md-3">
+<div class="wrapper" style="padding: 1em 2em;">
+<h3><strong>Administrator Tasks</strong></h3>
+<ul>
+<li><a href="/sdcms/admin/acceptFarmers.xhtml"><i class="fa fa-hand-o-right">  </i> Accept Farmer</a></li>
+<li><a href="/sdcms/admin/farmers.xhtml"><i class="fa fa-users">  </i> Registered Farmers</a></li>
+<li><a href="/sdcms/admin/cow.xhtml"><i class="fa fa-edit"> </i> Change cow status</a></li>
+</ul>
+</div >
+</div >
+
+<div class="col-md-9">
+<div class="wrapper" style="padding: 1em 2em;">
+<h3>Please use the links in the administrator tasks to perform duties.</h3>
+</div >
+</div >
+
+</div >
+
+
+</div >
+    
+    
+    
+    </footer>
+    
+    <footer >
+		<ui:include src="/pageincludes/adminFooter.xhtml"/>
+</footer>
+</div>
+</div>
+	</h:body>
+</html>

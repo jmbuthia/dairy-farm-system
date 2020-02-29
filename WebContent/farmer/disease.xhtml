@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	
+
+<link rel="stylesheet" type="text/css" href="#{resource['css/sdcms.css']}"></link>
+
+	</h:head>
+	<h:body id="bodii" >
+	<div class="container">
+	<div class="container-fluid">
+          <header>
+          <ui:include src="/pageincludes/farmerHeaderAll.xhtml" />
+     
+    </header>  
+    
+    <h3 style="color:teal; text-align: center;">Please record Diseases, medicine and click save record button</h3>
+    
+    <h:form>
+     
+     <p:watermark value="e.g 500.5" for="pricePerDose"></p:watermark>
+    <p:watermark value="e.g 0.3" for="amountOfDose"></p:watermark>
+    <p:watermark value="e.g cow12" for="cowtag"></p:watermark>
+    <p:watermark value="e.g foot and mouth" for="nameOfDisease"></p:watermark>
+     <p:watermark value="e.g octiver" for="nameOfMedicine"></p:watermark>
+   
+        
+
+<div class="form-group" style="padding: 1em;">
+
+<p:outputLabel for="cowtag" value="Cowtag:" class="col-md-2 control-label" />
+<div class="col-md-10">
+<p:inputText id="cowtag" value="#{recordDisease.cowtag}" required="true" disabled="true" requiredMessage="cowtag is required" class="form-control"
+validatorMessage="Cowtag must be characters and number btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z0-9]+$" />
+	
+</p:inputText>
+</div>
+
+</div >
+
+
+<div class="form-group" style="padding: 1em;">
+
+<p:outputLabel for="nameOfDisease" value="Name Of Disease:" class="col-md-2 control-label" />
+<div class="col-md-10">
+<p:inputText id="nameOfDisease" value="#{recordDisease.disease.nameOfDisease}" required="true" requiredMessage="Name Of Disease is required" class="form-control"
+validatorMessage="Name Of Disease must be characters and number btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z0-9]+$" />
+	
+</p:inputText>
+</div>
+
+</div >
+
+<div class="form-group" style="padding: 1em;">
+
+<p:outputLabel for="nameOfMedicine" value="Name Of Medicine:" class="col-md-2 control-label" />
+<div class="col-md-10">
+<p:inputText id="nameOfMedicine" value="#{recordDisease.disease.nameOfMedicine}" required="true"  requiredMessage="Name Of Medicine is required" class="form-control"
+validatorMessage="Name Of Medicine must be characters and number btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z0-9]+$" />
+	
+</p:inputText>
+</div>
+
+</div >
+
+
+<div class="form-group" style="padding: 1em;">
+<p:outputLabel for="amountOfDose" value="Amount Of Dose:" class="col-md-2 control-label"/>
+<div class="col-md-10" >
+<p:inputText id="amountOfDose" value="#{recordDisease.disease.amountOfDose}" required="true" requiredMessage="Amount Of Dose is required" class="form-control"
+validatorMessage="Amount Of Dose must be real number and not more than 10 liters or less than 0.01">
+<f:validateLength minimum="1" maximum="5"></f:validateLength>
+		<f:validateDoubleRange minimum="0.001" maximum="10.00"/>
+</p:inputText>
+</div>
+
+</div>
+
+
+<div class="form-group" style="padding: 1em;">
+<p:outputLabel for="pricePerDose" value="Price Per Litre:" class="col-md-2 control-label"/>
+<div class="col-md-10" >
+<p:inputText id="pricePerDose" value="#{recordDisease.disease.pricePerDose}" required="true" requiredMessage="Price Per Dose is required" class="form-control"
+validatorMessage="Price Per Dose must be a number not more than 100 or less than 0.001">
+<f:validateLength minimum="1" maximum="5"></f:validateLength>
+<f:validateDoubleRange minimum="0.001" maximum="10000.00"/>
+</p:inputText>
+</div>
+
+</div>
+
+  <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false" responsive="true">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+
+<div class="form-group" style="padding: 1em;">
+<div class="col-md-offset-2 col-md-10">
+<p:commandButton   value="Save Record" icon="fa fa-save" class="btn btn-default btn-success"  action="#{recordDisease.saveDiseases()}" />
+
+</div >
+</div >
+
+    </h:form>
+    
+    
+    
+    
+    <footer >
+		<ui:include src="/pageincludes/farmerFooter.xhtml"/>
+</footer>
+</div>
+</div>
+	</h:body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" id="full">
+	<h:head >
+	
+<link rel="stylesheet" type="text/css" href="#{resource['css/sdcms.css']}"></link>
+
+	</h:head>
+	<h:body id="bodii" >
+	
+	
+	<div class="container">
+	<div  class="container-fluid">
+          <header>
+          <ui:include src="/pageincludes/indexHeader.xhtml" />
+     
+    </header>  
+    <div class="jumbotron">
+   <div align="center">
+    <h2 style="color:magenta;">Welcome to SDCMS</h2>      
+    
+  <p style="color:tomato;">We manage cow for better production. Please login or register with us.</p>
+  </div>
+  <p:panelGrid layout="grid" columns="4" styleClass="ui-noborder ui-panelgrid-blank style">
+ 		 <p:column>
+   
+		</p:column>
+		<p:column>
+    <p class="lead">
+    <a class="btn btn-default btn-success btn-lg" href="/sdcms/login.xhtml" role="button"> Login </a>
+  </p>
+		</p:column>
+		<p:column>
+    <p class="lead">
+    <a class="btn btn-primary btn-lg btn-success" href="/sdcms/register.xhtml" role="button">Register</a>
+  </p>
+		</p:column>
+		<p:column>
+   
+		</p:column>
+  </p:panelGrid>
+  
+  </div>
+    
+    <footer >
+		<ui:include src="/pageincludes/footer.xhtml"/>
+</footer>
+</div>
+</div>
+	</h:body>
+	
+</html>

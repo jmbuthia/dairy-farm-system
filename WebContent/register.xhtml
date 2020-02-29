@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" >
+	<h:head>
+	
+<link rel="stylesheet" type="text/css" href="#{resource['css/sdcms.css']}"></link>
+
+	</h:head>
+	<h:body id="bodii" >
+
+	
+	<div class="container">
+	<div class="container-fluid">
+          <header>
+          <ui:include src="/pageincludes/registerHeader.xhtml" />
+     
+    </header>  
+    
+    
+    <h:form>
+     <p:watermark value="e.g 2010/12/24" for="dob"></p:watermark>
+    <p:watermark value="e.g JohnS@n1" for="password"></p:watermark>
+    <p:watermark value="e.g JohnS@n1" for="confirmPassword"></p:watermark>
+    <p:watermark value="e.g 12345678" for="idNo"></p:watermark>
+    <p:watermark value="e.g jmbuthia12@gmail.com" for="email"></p:watermark>
+    <p:watermark value="e.g Johnson" for="firstName"></p:watermark>
+    <p:watermark value="e.g Mbuthia" for="lastName"></p:watermark>
+    <p:watermark value="e.g Nakuru" for="location"></p:watermark> 
+     <p:tooltip id="toolTipFocus" for="password" showEvent="focus" position="top" hideEvent="blur"/> 
+    
+    
+    
+    
+<div class="form-group" style="padding: 1em;">
+
+<p:outputLabel for="idNo" value="Id Number:" class="col-md-2  control-label"/>
+
+<div class="col-md-10">
+<p:inputMask id="idNo" value="#{registerFarmer.farmer.idNo}" required="true" requiredMessage="id is required"  mask="99999999" class="form-control"
+validatorMessage="Must be 8 numbers. if 7 start with 0, negative numbers are not allowed">
+<f:validateLongRange minimum="0" />
+<f:validateLength minimum="8" maximum="8"></f:validateLength>
+</p:inputMask>
+</div>
+
+</div >
+
+
+
+<div class="form-group" style="padding: 1em;">
+
+<p:outputLabel for="firstName" value="First Name:" class="col-md-2 control-label" />
+<div class="col-md-10">
+<p:inputText id="firstName" value="#{registerFarmer.farmer.firstName}" required="true" requiredMessage="first Name is required" class="form-control"
+validatorMessage="Firstname must be characters btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z']+$" />
+	
+</p:inputText>
+</div>
+
+</div >
+
+
+<div class="form-group" style="padding: 1em;">
+<p:outputLabel for="lastName" value="Last Name:" class="col-md-2 control-label"/>
+<div class="col-md-10" >
+<p:inputText id="lastName" value="#{registerFarmer.farmer.lastName}" required="true" requiredMessage="last Name is required" class="form-control"
+validatorMessage="Lastname must be characters btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z']+$" />
+</p:inputText>
+</div>
+
+</div>
+
+
+
+<div class="form-group" style="padding: 1em;">
+<p:outputLabel for="email" value="Email:" class="col-md-2 control-label"/>
+<div class="col-md-10">
+<p:inputText id="email" value="#{registerFarmer.farmer.emailAddress}" required="true" requiredMessage="Email address is required" class="form-control"
+validatorMessage="email must meet email requirement and have @ sign">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z'@.]+$" />
+</p:inputText>
+</div>
+
+</div>
+
+
+<div class="form-group" style="padding: 1em;">
+ <p:outputLabel for="location" value="location:" class="col-md-2 control-label"/>
+ <div class="col-md-10">
+
+
+<p:selectOneRadio id="location" value="#{registerFarmer.farmer.location}" required="true" layout="responsive" columns="4">
+            <f:selectItem itemLabel="Nakuru" itemValue="Nakuru" />
+            <f:selectItem itemLabel="Nairobi" itemValue="Nairobi" itemDisabled="true"/>
+            <f:selectItem itemLabel="kisumu" itemValue="Kisumu" itemDisabled="true"/>
+             <f:selectItem itemLabel="Mombasa" itemValue="Mombasa" itemDisabled="true" />
+        </p:selectOneRadio>
+
+</div>
+        </div> 
+
+
+<div class="form-group" style="padding: 1em;">
+<p:outputLabel for="dob" value="Date of Birth:" class="col-md-2 control-label"/>
+<div class="col-md-10">
+<p:calendar id="dob" value="#{registerFarmer.farmer.dob}" required="true" requiredMessage="Date of Birth is required" pattern="yyyy/MM/dd" 
+  mindate="#{registerFarmer.maximumAge()}" maxdate="#{registerFarmer.minimumAge()}"  yearRange="#{registerFarmer.yearmax()}:#{registerFarmer.yearmin()}" 
+    effect="explode" navigator="true" mask="9999/99/99" />
+    </div>
+    </div>
+    
+    
+    
+    <div class="form-group" style="padding: 1em;">
+    <p:outputLabel for="password" value="Password:" class="col-md-2 control-label"/>
+    <div class="col-md-10">
+<p:password id="password" value="#{registerFarmer.password}" 
+title="More than 6 characters, Contain atleast 1 (lowercase, number and uppercase)."
+ validatorMessage="Password must be more than 6 characters, Contain atleast 1 lowercase,number and uppercase. Also matches confirm password."
+required="true" inline="true" match="confirmPassword" requiredMessage="password is required" class="form-control"
+ feedback= "true" >
+ <f:validateRegex
+		pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}" />
+ </p:password>
+ </div>
+ </div>
+ 
+ 
+ <div class="form-group" style="padding: 1em;" >
+ 
+ <p:outputLabel for="confirmPassword" value="Confirm Password:" class="col-md-2 control-label"/>
+ <div class="col-md-10">
+<p:password id="confirmPassword" value="#{registerFarmer.password}" required="true" requiredMessage="confirm password is required" class="form-control"/>
+ </div>
+ </div>
+   
+
+  <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+
+<div class="form-group" style="padding: 1em;">
+<div class="col-md-offset-2 col-md-10">
+<p:commandButton   value="Register" icon="ui-icon-check" class="btn btn-default btn-success"  action="#{registerFarmer.registerFarmer()}" />
+
+</div >
+
+
+</div >
+
+
+
+
+
+
+</h:form>  
+<footer> 
+		<ui:include src="/pageincludes/footer.xhtml"/>
+		</footer>
+		
+
+</div>
+</div>
+	</h:body>
+</html>

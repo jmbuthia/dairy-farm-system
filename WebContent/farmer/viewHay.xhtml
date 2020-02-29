@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	
+
+<link rel="stylesheet" type="text/css" href="#{resource['css/sdcms.css']}"></link>
+
+	</h:head>
+	<h:body id="bodii" >
+	<div class="container">
+	<div class="container-fluid">
+          <header>
+          <ui:include src="/pageincludes/farmerHeaderAll.xhtml" />
+     
+    </header>  
+    
+    <h3 style="color:teal; text-align: center;">List of all Hay used by Cow cowstag= #{recordHay.cowtag} </h3>
+    
+    <h:form >
+           
+    
+  
+   <p:dataTable id="dataM" value="#{documentExporters.allHayForMyCow}"
+             var="o"  preserveDataModel="false" draggableColumns="true" draggableRows="true" 
+           
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                 paginator="true" rows="5" style="margin-bottom:20px; margin-top:20px;" reflow="true" > 
+                 
+                     
+                 
+                  <f:facet name="{Exporters}">
+                 
+           <h:commandLink>
+                <p:graphicImage value="/resources/images/excel.jpg" width="24" />
+                <p:dataExporter type="xls" postProcessor="#{documentExporters.postProcessXLS}"
+                    target="dataM" fileName="List_of_Hay_#{recordHay.cowtag}_excel" />
+            </h:commandLink>
+            
+            <h:commandLink>
+                <p:graphicImage value="/resources/images/pdf.jpg" width="24" />
+                <p:dataExporter type="pdf" target="dataM" preProcessor="#{documentExporters.preProcessPDF}" fileName="List_of_Hay_#{recordHay.cowtag}_pdf"/>
+            </h:commandLink>
+               <h:commandLink>
+        <p:graphicImage value="/resources/images/csv.png" width="24"/>
+        <p:dataExporter type="csv" target="dataM" postProcessor="#{documentExporters.postProcessXLS}" fileName="List_of_Hay_#{recordHay.cowtag}_csv"  /> 
+         </h:commandLink>
+    
+        </f:facet>
+                 
+                 
+        
+                 <f:facet name="header">  
+                    List of Hay used history.  
+                </f:facet> 
+                
+                
+                 <p:column sortBy="#{o.numberOfBales}">
+                    <f:facet name="header">  
+                        <h:outputText value="Number Of Bales" />  
+                    </f:facet>
+                    <h:outputText value="#{o.numberOfBales}"/>
+                </p:column>
+                
+                <p:column sortBy="#{o.pricePerBale}">
+                    <f:facet name="header">  
+                        <h:outputText value="Price Per Bale" />  
+                    </f:facet>
+                    <h:outputText value="#{o.pricePerBale}"/>
+                </p:column>
+                
+                
+                <p:column sortBy="#{o.hayCost}">
+                    <f:facet name="header">  
+                        <h:outputText value="Hay Cost" />  
+                    </f:facet>
+                    <h:outputText value="#{o.hayCost}  "/>
+                </p:column>
+                
+                                
+                 <p:column filterBy="#{o.time}">
+                    <f:facet name="header">  
+                        <h:outputText value="Date" />  
+                    </f:facet>
+                    <h:outputText value="#{o.time}  "/>
+                </p:column>
+                
+                
+            </p:dataTable>
+        
+  
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false" responsive="true">
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+    
+    
+    </h:form>
+    
+ 
+    
+    
+    <footer >
+		<ui:include src="/pageincludes/farmerFooter.xhtml"/>
+</footer>
+</div>
+</div>
+	</h:body>
+</html>

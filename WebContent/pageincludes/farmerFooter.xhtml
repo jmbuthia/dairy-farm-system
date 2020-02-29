@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	<meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="#{resource['css/bootstrap.min.css']}"></link>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">
+</script>
+<![endif]-->
+	
+	
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/sdcms.png']}"/>
+
+	
+	 
+ <title><ui:insert name="title">Smart cow</ui:insert></title>
+
+	</h:head>
+	<h:body >
+	
+
+	
+	<footer class="footer" style="margin: 5em 0em 0em -2em;">
+<div class="container" style="padding-left: 0; padding-right: 0;">
+<div class="row">
+<div class="col-md-6">
+<div class="wrapper" style="background-color:#ecf0f1; padding: 1em 2em;">
+<h3><strong>Quick Links</strong></h3>
+<ul>
+<li><a href="/sdcms/farmer/farmerHome.xhtml"><i class="fa fa-dashboard">  </i> Dash Board</a></li>
+<li><a href="/sdcms/farmer/contactUs.xhtml"><i class="fa fa-phone">  </i> Contact Us</a></li>
+<li><a href="/sdcms/farmer/aboutUs.xhtml"><i class="fa fa-info-circle"> </i> About Us</a></li>
+</ul>
+</div >
+</div >
+<div class="col-md-6">
+<div class="wrapper" style="background-color:#ecf0f1; padding: 1em 2em;">
+<h3><strong>Follow Us:</strong></h3>
+<ul>
+<li><a href="https://www.facebook.com/johnson.mbuthia"><i  class="fa fa-facebook-square">  </i> Facebook</a></li>
+<li><a href="https://twitter.com/MbuthiaJohnson"><i style="color:#00ccff;" class="fa fa-twitter-square"></i> Twitter</a></li>
+<li><a href="https://plus.google.com/103321790349344364302"><i style="color:red;" class="fa fa-google-plus-square"></i> Google+</a></li>
+</ul>
+</div >
+</div >
+</div >
+<div class="row" style="text-align: center; padding: 1em; margin: 1em 0; background-color:#ecf0f1;">
+All Rights Reserved <i  class="fa fa-copyright">  </i>. SDCMS, #{loginLogout.footerDate}.
+</div >
+</div >
+</footer>
+	
+	
+	
+<!-- <footer class="footer" style="margin: 5em 0em 1em 0em;">
+<div class="container" style="padding-left: 0">
+
+	<div class="container-fluid">
+
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-bottom" >
+<div class="container-fluid"> 
+<div align="center">
+ <span style="float:center;color:teal;">
+	 <p:outputLabel value="SDCMS copyright" style="margin-top: 0.01em;margin-bottom: 0.01em;" > 
+	 <i  class="fa fa-copyright">  </i> #{loginLogout.footerDate}
+	 <br/>. All rights reserved.</p:outputLabel></span>
+	 
+	 </div>
+</div >/.container-fluid
+</nav>
+</div>
+</div>
+ -->
+ 
+ 
+ 
+<!-- jQuery (necessary for Bootstrap’s JavaScript plugins) -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="#{resource['js/bootstrap.min.js']}"></script>
+<script src="#{resource['js/bootstrap-sprockets.js']}"></script>
+
+
+</h:body>
+</html>

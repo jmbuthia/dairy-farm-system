@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	
+
+<link rel="stylesheet" type="text/css" href="#{resource['css/sdcms.css']}"></link>
+
+	</h:head>
+	<h:body id="bodii" >
+	<div class="container">
+	<div class="container-fluid">
+          <header>
+          <ui:include src="/pageincludes/farmerHeaderAll.xhtml" />
+     
+    </header>  
+    
+    <h3 style="color:teal; text-align: center;">List of all my livestock </h3>
+    
+    <h:form>
+ 
+            
+    
+  
+   <p:dataTable id="dataM" value="#{documentExporters.allMyCows}"
+             var="o"  preserveDataModel="false"
+           
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                 paginator="true" rows="6" style="margin-bottom:20px; margin-top:20px;" reflow="true" > 
+                 
+                 
+                 
+                  <f:facet name="{Exporters}">
+                 
+           <h:commandLink>
+                <p:graphicImage value="/resources/images/excel.jpg" width="24" />
+                <p:dataExporter type="xls" postProcessor="#{documentExporters.postProcessXLS}"
+                    target="dataM" fileName="List_of_all_mycow_excel" />
+            </h:commandLink>
+            
+            <h:commandLink>
+                <p:graphicImage value="/resources/images/pdf.jpg" width="24" />
+                <p:dataExporter type="pdf" target="dataM" preProcessor="#{documentExporters.preProcessPDF}" fileName="List_of_all_mycow_pdf"/>
+            </h:commandLink>
+               <h:commandLink>
+        <p:graphicImage value="/resources/images/csv.png" width="24"/>
+        <p:dataExporter type="csv" target="dataM" postProcessor="#{documentExporters.postProcessXLS}" fileName="List_of_all_mycow_csv"  /> 
+         </h:commandLink>
+    
+        </f:facet>
+        
+        
+        
+        
+                 <f:facet name="header">  
+                    List of all My cows.  
+                </f:facet> 
+                
+                <p:column  filterBy="#{o.cowtag}">
+                    <f:facet name="header">  
+                        <h:outputText value="Cowtag" />  
+                    </f:facet>
+                    <h:outputText value="#{o.cowtag}"/>
+                </p:column>
+                
+                 <p:column sortBy="#{o.cowName}">
+                    <f:facet name="header">  
+                        <h:outputText value="Cow Name" />  
+                    </f:facet>
+                    <h:outputText value="#{o.cowName}"/>
+                </p:column>
+                
+                <p:column sortBy="#{o.breed}">
+                    <f:facet name="header">  
+                        <h:outputText value="Breed" />  
+                    </f:facet>
+                    <h:outputText value="#{o.breed}  "/>
+                </p:column>
+                
+                
+                <p:column sortBy="#{o.colour}">
+                    <f:facet name="header">  
+                        <h:outputText value="Colour" />  
+                    </f:facet>
+                    <h:outputText value="#{o.colour}  "/>
+                </p:column>
+                
+                <p:column filterBy="#{o.fathersTag}">
+                    <f:facet name="header">  
+                        <h:outputText value="Fathers Tag" />  
+                    </f:facet>
+                    <h:outputText value="#{o.fathersTag}"/>
+                </p:column>
+                
+                <p:column filterBy="#{o.mothersTag}">
+                    <f:facet name="header">  
+                        <h:outputText value="Mothers Tag" />  
+                    </f:facet>
+                    <h:outputText value="#{o.mothersTag}"/>
+                </p:column>
+                
+                <p:column sortBy="#{o.dob}">
+                    <f:facet name="header">  
+                        <h:outputText value="Date of Birth" />  
+                    </f:facet>
+                    <h:outputText value="#{o.dob}"/>
+                </p:column>
+                
+                
+                
+                
+                <p:column sortBy="#{o.status}">
+                    <f:facet name="header">  
+                        <h:outputText value="Status" />  
+                    </f:facet>
+                    <h:outputText value="#{o.status}"/>
+                </p:column>
+          
+                
+                
+            </p:dataTable>
+        
+ 
+    
+    
+
+            
+    
+
+ 
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false" responsive="true">
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+    
+    
+    </h:form>
+    
+    
+    
+    
+    <footer >
+		<ui:include src="/pageincludes/farmerFooter.xhtml"/>
+</footer>
+</div>
+</div>
+	</h:body>
+</html>

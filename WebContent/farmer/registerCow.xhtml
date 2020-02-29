@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	
+
+<link rel="stylesheet" type="text/css" href="#{resource['css/sdcms.css']}"></link>
+
+	</h:head>
+	<h:body id="bodii" >
+	<div class="container">
+	<div class="container-fluid">
+          <header>
+          <ui:include src="/pageincludes/farmerHeaderAll.xhtml" />
+     
+    </header>  
+    
+    <h3 style="color:teal; text-align: center;">Please register your cows in the system, fill the form and click register button</h3>
+    
+    <h:form>
+     
+     <p:watermark value="e.g 2010/12/24" for="dob"></p:watermark>
+    <p:watermark value="e.g Freshian" for="cowBreed"></p:watermark>
+    <p:watermark value="e.g cow12" for="cowtag"></p:watermark>
+    <p:watermark value="e.g bull12" for="fatherTag"></p:watermark>
+    <p:watermark value="e.g cw87" for="motherTag"></p:watermark>
+    
+    <p:watermark value="e.g Karedi" for="cowName"></p:watermark>
+  
+    
+    
+    
+    
+
+<div class="form-group" style="padding: 1em;">
+
+<p:outputLabel for="cowtag" value="Cowtag:" class="col-md-2 control-label" />
+<div class="col-md-10">
+<p:inputText id="cowtag" value="#{registerCow.cow.cowtag}" required="true" requiredMessage="cowtag is required" class="form-control"
+validatorMessage="Cowtag must be characters and number btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z0-9]+$" />
+	
+</p:inputText>
+</div>
+
+</div >
+
+
+<div class="form-group" style="padding: 1em;">
+<p:outputLabel for="cowName" value="Cow Name:" class="col-md-2 control-label"/>
+<div class="col-md-10" >
+<p:inputText id="cowName" value="#{registerCow.cow.cowName}" required="true" requiredMessage="Cow Name is required" class="form-control"
+validatorMessage="Cow name must be characters btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z']+$" />
+</p:inputText>
+</div>
+
+</div>
+
+<div class="form-group" style="padding: 1em;">
+<p:outputLabel for="cowBreed" value="Cow Breed:" class="col-md-2 control-label"/>
+<div class="col-md-10" >
+<p:inputText id="cowBreed" value="#{registerCow.cow.breed}" required="true" requiredMessage="Cow Breed is required" class="form-control"
+validatorMessage="Cow Breed must be characters btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z']+$" />
+</p:inputText>
+</div>
+
+</div>
+
+
+<div class="form-group" style="padding: 1em;">
+<p:outputLabel for="fatherTag" value="Fathers Tag" class="col-md-2 control-label"/>
+<div class="col-md-10" >
+<p:inputText id="fatherTag" value="#{registerCow.cow.fathersTag}" required="true" requiredMessage="Fathers Tag is required" class="form-control"
+validatorMessage="Fathers Tag must be characters btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z0-9]+$" />
+</p:inputText>
+</div>
+
+</div>
+
+
+
+<div class="form-group" style="padding: 1em;">
+<p:outputLabel for="motherTag" value="Mothers Tag" class="col-md-2 control-label"/>
+<div class="col-md-10" >
+<p:inputText id="motherTag" value="#{registerCow.cow.mothersTag}" required="true" requiredMessage="Mothers Tag is required" class="form-control"
+validatorMessage="Mothers Tag must be characters btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z0-9]+$" />
+</p:inputText>
+</div>
+
+</div>
+
+
+<div class="form-group" style="padding: 1em;">
+ <p:outputLabel for="colour" value="Colour:" class="col-md-2 control-label"/>
+ <div class="col-md-10">
+<p:selectOneRadio id="colour" value="#{registerCow.cow.colour}" layout="responsive" columns="4">
+            <f:selectItem itemLabel="Brown" itemValue="Brown" />
+            <f:selectItem itemLabel="Black" itemValue="Black" />
+            <f:selectItem itemLabel="Brown-White" itemValue="Brown-White" />
+             <f:selectItem itemLabel="Black-White" itemValue="Black-White" />
+        </p:selectOneRadio>
+</div>
+        </div>
+
+<div class="form-group" style="padding: 1em;">
+<p:outputLabel for="dob" value="Cow Date of Birth:" class="col-md-2 control-label"/>
+<div class="col-md-10">
+<p:calendar id="dob" value="#{registerCow.cow.dob}" required="true" requiredMessage="Cow Date of Birth is required" pattern="yyyy/MM/dd" 
+  mindate="#{registerCow.maximumAge()}" maxdate="#{registerCow.minimumAge()}"  yearRange="#{registerCow.yearmax()}:#{registerCow.yearmin()}" 
+    effect="explode" navigator="true" mask="9999/99/99" />
+    </div>
+    </div>
+ 
+    
+
+  <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false" responsive="true">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+
+<div class="form-group" style="padding: 1em;">
+<div class="col-md-offset-2 col-md-10">
+<p:commandButton   value="Register Cow" icon="ui-icon-check" class="btn btn-default btn-success"  action="#{registerCow.registerMyCow()}" />
+
+</div >
+</div >
+
+
+
+
+            
+    
+
+ 
+    
+    
+    
+    </h:form>
+    
+    
+    
+    
+    <footer >
+		<ui:include src="/pageincludes/farmerFooter.xhtml"/>
+</footer>
+</div>
+</div>
+	</h:body>
+</html>
